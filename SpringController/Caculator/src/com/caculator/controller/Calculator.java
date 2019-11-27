@@ -30,6 +30,8 @@ public class Calculator {
                 resultCalculator = first * second;
                 break;
             case "divine":
+                if (second==0)
+                    return "error";
                 resultCalculator = (double) first / second;
                 break;
             default:

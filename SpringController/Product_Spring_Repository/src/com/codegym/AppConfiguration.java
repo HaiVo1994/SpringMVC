@@ -7,13 +7,4 @@ import com.codegym.service.ProductServiceImpl;
 import com.codegym.repository.ProductRepository;
 import com.codegym.repository.ProductRepositoryImpl;
 public class AppConfiguration {
-    @Bean
-    public ProductService productService(){
-        return new ProductServiceImpl();
-    }
-
-    @Bean
-    public ProductRepository productRepository(){
-        return new ProductRepositoryImpl();
-    }
 }
