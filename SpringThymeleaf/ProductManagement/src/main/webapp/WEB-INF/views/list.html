@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listing product</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Products</h1>
+<p><a href="/new">Add new product</a></p>
+<p>There are <span th:text="${products.size()}"></span> products in this list.</p>
+<table border="1">
+    <thead>
+        <tr>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="product, lissProduct : ${products}">
+            <td th:text="${product.getId()}"></td>
+            <td><a th:href="@{/{id}/view(id=${product.getId()})}" th:text="${product.getName()}"></a></td>
+            <td th:text="${product.getPrice()}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
