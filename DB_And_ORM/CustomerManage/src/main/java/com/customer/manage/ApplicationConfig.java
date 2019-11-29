@@ -111,7 +111,7 @@ public class ApplicationConfig implements ApplicationContextAware {
         return transactionManager;
     }
 
-    Properties additionalProperties(){
+    private Properties additionalProperties(){
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
