@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+    <div th:insert="frag::menu"></div>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>View</td>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="product: ${products}">
+                <tr>
+                    <!--/*@thymesVar id="product" type="com.basket.model.Product"*/-->
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td><a th:href="@{/view/__${product.id}__}" th:text="view"></a><td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>
