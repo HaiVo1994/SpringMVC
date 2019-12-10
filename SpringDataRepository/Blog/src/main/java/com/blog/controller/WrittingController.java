@@ -35,7 +35,7 @@ public class WrittingController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
+    @GetMapping(value = "/create",produces = "application/json;charset=UTF-8")
     public ModelAndView create(){
         ModelAndView modelAndView = new ModelAndView("/writing/create");
         modelAndView.addObject("writing", new Writing());
@@ -51,9 +51,9 @@ public class WrittingController {
         return modelAndView;
     }
 
-    @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable("id") Long id){
-        Writing writing = writingService.findById(id);
+    @GetMapping(value = "/edit/{id}", produces = "application/json;charset=UTF-8")
+    public ModelAndView edit(@PathVariable("id") Writing writing){
+//        Writing writing = writingService.findById(id);
         ModelAndView modelAndView = new ModelAndView("writing/edit");
         modelAndView.addObject("writing",writing);
         return modelAndView;
@@ -71,5 +71,15 @@ public class WrittingController {
         modelAndView.addObject("writing",writing);
         return modelAndView;
     }
-
+    @GetMapping("/remove/{id}")
+    public ModelAndView prepareRemove(@PathVariable("id") Writing writing){
+        ModelAndView modelAndView = new ModelAndView("writing/remove");
+        modelAndView.addObject("writing",writing);
+        return modelAndView;
+    }
+    @PostMapping("/remove")
+    public String remove(@ModelAttribute("writing") Writing writing){
+        writingService.remove(writing.getId());
+        return "redirect:/writing/list";
+    }
 }
