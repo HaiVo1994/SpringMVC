@@ -15,6 +15,7 @@
         </thead>
         <tbody>
             <th:block th:each="category: ${categories}">
+                <!--/*@thymesVar id="category" type="com.blog.model.Category"*/-->
                 <tr>
                     <td>
                         <a th:href="@{/category/edit/__${category.id}__}" th:text="${category.name}"></a>

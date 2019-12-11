@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Product</title>
+    <th:block th:replace="frag::head">
+    </th:block>
+</head>
+<body id="page-top">
+<div id="wrapper">
+    <!--/*@thymesVar id="product" type="com.basket.model.Product"*/-->
+    <th:block th:insert="frag::side-menu">
+    </th:block>
+    <div id="content-wrapper">
+        <div id="content">
+            <div class="container-fluid">
+                <h1 class="h3 mb-2 text-gray-800">Product</h1>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <img th:src="${product.img}">
+                                <p th:text="${product.price}"></p>
+                                <form th:action="@{/put}" method="post">
+                                    <input type="number" name="id" id="id" th:value="${product.id}" hidden>
+                                    <button type="submit" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                          <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">Buy</span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary" th:text="${product.name}"></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <p th:text="${product.content}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<th:block th:replace="frag::script">
+</th:block>
+</body>
+</html>
+

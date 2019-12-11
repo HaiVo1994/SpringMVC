@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Basket</title>
+    <th:block th:replace="frag::head">
+    </th:block>
+</head>
+<body id="page-top">
+<div id="wrapper">
+    <th:block th:insert="frag::side-menu">
+    </th:block>
+    <div id="content-wrapper">
+        <div id="content">
+            <div class="container-fluid">
+                <h1 class="h3 mb-2 text-gray-800">Product</h1>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable"
+                                   width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Price</td>
+                                    <td>Amount</td>
+                                    <td>Remove</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="basket: ${ListBasket}">
+                                    <tr>
+                                        <!--/*@thymesVar id="basket" type="com.basket.model.Basket"*/-->
+                                        <td th:text="${basket.product.name}"></td>
+                                        <td th:text="${basket.product.price}"></td>
+                                        <td>
+                                            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                                                  th:action="@{/change}" method="post">
+                                                <div class="input-group">
+                                                    <input type="number" name="id" th:value="${basket.product.id}" hidden>
+                                                    <input type="number" class="form-control bg-light border-0 small"
+                                                           placeholder="Change Ammout..." aria-label="Change" aria-describedby="basic-addon2"
+                                                           name="amount" th:value="${basket.mount}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form th:action="@{/remove}" method="post">
+                                                <input type="number" name="id" th:value="${basket.product.id}" hidden>
+                                                <button type="submit" class="btn btn-danger btn-circle">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="frag::script">
+</th:block>
+</body>
+</html>

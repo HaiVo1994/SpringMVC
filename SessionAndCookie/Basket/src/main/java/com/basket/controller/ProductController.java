@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-
 public class ProductController {
     @Autowired
     public ProductService productService;
@@ -20,14 +19,14 @@ public class ProductController {
     @GetMapping("/products")
     public ModelAndView list(){
         List<Product> products = this.productService.findAll();
-        ModelAndView modelAndView = new ModelAndView("/list");
+        ModelAndView modelAndView = new ModelAndView("product/list");
         modelAndView.addObject("products", products);
         return modelAndView;
     }
 
     @GetMapping("/view/{id}")
     public ModelAndView view(@PathVariable("id") int id){
-        ModelAndView modelAndView = new ModelAndView("view");
+        ModelAndView modelAndView = new ModelAndView("product/view");
         modelAndView.addObject("product", productService.findById(id));
         return modelAndView;
     }

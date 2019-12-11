@@ -26,6 +26,7 @@ public class BasketServiceImpl implements BasketService {
             Basket basket = new Basket();
             Product product = productRepository.findById(id);
             basket.setProduct(product);
+            basket.setMount(1);
             basketList.add(basket);
         }
     }

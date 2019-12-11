@@ -6,6 +6,7 @@ import com.basket.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class BasketController {
 
     @GetMapping("/viewBasket")
     public ModelAndView view(){
-        ModelAndView modelAndView = new ModelAndView("viewBasket");
+        ModelAndView modelAndView = new ModelAndView("basket/viewBasket");
         return modelAndView;
     }
 
@@ -44,6 +45,13 @@ public class BasketController {
     public String remove(@RequestParam("id") int id,
                          @ModelAttribute("ListBasket") List<Basket> ListBasket){
         basketService.removeProduct(ListBasket,id);
+        return "redirect:viewBasket";
+    }
+
+    @PostMapping("/removeAll")
+    public String removeAll(@ModelAttribute("ListBasket") List<Basket> ListBasket,
+                            SessionStatus status){
+        status.setComplete();
         return "redirect:viewBasket";
     }
 }
