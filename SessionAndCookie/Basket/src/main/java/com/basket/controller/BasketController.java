@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -50,8 +51,10 @@ public class BasketController {
 
     @PostMapping("/removeAll")
     public String removeAll(@ModelAttribute("ListBasket") List<Basket> ListBasket,
+                            WebRequest request,
                             SessionStatus status){
         status.setComplete();
+        request.removeAttribute("ListBasket", WebRequest.SCOPE_SESSION);
         return "redirect:viewBasket";
     }
 }

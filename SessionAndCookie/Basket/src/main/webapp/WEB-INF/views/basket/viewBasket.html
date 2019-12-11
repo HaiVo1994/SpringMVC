@@ -60,6 +60,14 @@
                                 </th:block>
                                 </tbody>
                             </table>
+                            <form th:action="@{/removeAll}" method="post">
+                                <button type="submit" class="btn btn-danger btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                                    <span class="text">Remove All</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
