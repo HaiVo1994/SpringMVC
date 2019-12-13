@@ -140,7 +140,13 @@ public class ApplicationConfig implements ApplicationContextAware, WebMvcConfigu
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/vendor/**")
-                .addResourceLocations("/vendor/").resourceChain(false);
+                .addResourceLocations("/WEB-INF/vendor/").resourceChain(false);
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/WEB-INF/css/");
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations("/WEB-INF/js/");
+        registry.addResourceHandler("/scss/**")
+                .addResourceLocations("/WEB-INF/scss/");
     }
 
     @Bean
